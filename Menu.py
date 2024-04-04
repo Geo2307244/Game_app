@@ -161,3 +161,50 @@ elif game == 4:
     print("Game 4")
 else:
     print("Invalid option")
+
+import random
+
+class RockPaperScissorsGame:
+    def __init__(self):
+        self.choices = ["rock", "paper", "scissors"]
+        self.reset()
+
+    def play(self, player_choice):
+        player_choice = player_choice.lower()
+        computer_choice = random.choice(self.choices)
+        if player_choice == computer_choice:
+            self.draws += 1
+            return f"Computer chose {computer_choice}. It's a draw!"
+        elif (player_choice == "rock" and computer_choice == "scissors") or \
+             (player_choice == "paper" and computer_choice == "rock") or \
+             (player_choice == "scissors" and computer_choice == "paper"):
+            self.player_wins += 1
+            return f"Computer chose {computer_choice}. You win!"
+        else:
+            self.computer_wins += 1
+            return f"Computer chose {computer_choice}. Computer wins!"
+
+    def reset(self):
+        self.player_wins = 0
+        self.computer_wins = 0
+        self.draws = 0
+
+    def game_stats(self):
+        total_games = self.player_wins + self.computer_wins + self.draws
+        return (f"Total games: {total_games}\n"
+                f"Wins: {self.player_wins}\n"
+                f"Losses: {self.computer_wins}\n"
+                f"Draws: {self.draws}")
+
+if __name__ == "__main__":
+    game = RockPaperScissorsGame()
+    while True:
+        player_input = input("Choose rock, paper, or scissors (or 'exit' to quit): ")
+        if player_input.lower() == 'exit':
+            break
+        result = game.play(player_input)
+        print(result)
+    print("\nGame Statistics:")
+    print(game.game_stats())
+
+
