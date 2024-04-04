@@ -1,8 +1,8 @@
 def play_Riddle_it_Roulette():
-    print("Welcome to Riddle It Roulette")
-    print("Let's Begin. You will be given a phrase to guess the word I have in mind.")
-    print("Get it right, you move on. Get it wrong, you lose a life!")
-    print("Lose 3 times, it's game over.\n")
+    print("\033[1;32m" + "Welcome to Riddle It Roulette" + "\033[0m") 
+    print("\033[1;32m" + "Let's Begin. You will be given a phrase to guess the word I have in mind." + "\033[0m")
+    print("\033[1;32m" + "Get it right, you move on. Get it wrong, you lose a life!" + "\033[0m")
+    print("\033[1;32m" + "Lose 3 times, it's game over." + "\033[0m")
 
     import random
 
@@ -51,28 +51,28 @@ def play_Riddle_it_Roulette():
         while True:
             word_display = display_word(word_to_guess, guessed_word)
             print("\n" + word_display)
-            print("Hint: ", hint)
+            print("\033[1;32m" + "Hint: " + hint + "\033[0m")  
 
             if word_display.lower() == word_to_guess:
-                print("\nThats Correct! {} Was The Word".format(word_to_guess))
+                print("\n\033[1;33m" + "Thats Correct! {} Was The Word".format(word_to_guess) + "\033[0m") 
                 score += 1
-                print("congrats\n")
+                print("\033[1;32;40m" + "congrats\n" + "\033[0m")  # Green text on black background
                 break
 
             if attempts >= life:
-                print("\nYou Ran Out of Lives!, The Word Was {}\n".format(word_to_guess))
+                print("\n\033[1;31m" + "You Ran Out of Lives!, The Word Was {}\n".format(word_to_guess) + "\033[0m")  
                 break
 
             guess = input("Enter The Correct Word To Proceed: ").lower()
 
             if guess == word_to_guess:
-                print("\nThats Correct! {} Was The Word".format(word_to_guess))
+                print("\n\033[1;33m" + "Thats Correct! {} Was The Word".format(word_to_guess) + "\033[0m")  
                 score += 1
-                print("congrats\n")
+                print("\033[1;32m" + "congrats\n" + "\033[0m")  
                 break
             else:
                 attempts += 1
-                print("That's Not Correct", life - attempts, "lives left.\n")
+                print("\033[1;31m" + "That's Not Correct {}. {} lives left.\n".format(life - attempts, attempts) + "\033[0m")  
 
         games += 1
         replay = input("Do you want to play again? (yes/no): ").lower()
@@ -82,24 +82,28 @@ def play_Riddle_it_Roulette():
             print("Games Played: {}".format(games))
             print("Average Score: {}".format(score / games))
 
-# Main code
-print("Welcome To Our App! Select The Game You Want To Play")
-print()
-print("1. Riddle It Roulette")
-print("2. Game 2")
-print("3. Game 3")
-print("4. Game 4")
-print()
+while True:
+    print("Welcome To Our App! Select The Game You Want To Play")
+    print() # Colour Scheme from (Studytonight.com)
+    print("\033[0;32m" + "1. Riddle It Roulette" + "\033[0m")  
+    print("\033[0;34m" + "2. Game 2" + "\033[0m")  
+    print("\033[1;35m" + "3. Game 3" + "\033[0m")  
+    print("\033[1;31m" + "4. Game 4" + "\033[0m")  
+    print()
 
-game = int(input("Select The Corresponding Number For The Game You Want To Play "))
+    game = int(input("Select The Corresponding Number For The Game You Want To Play "))
 
-if game == 1:
-    play_Riddle_it_Roulette()
-elif game == 2:
-    print("Game 2")
-elif game == 3:
-    print("Game 3")
-elif game == 4:
-    print("Game 4")
-else:
-    print("Invalid option")
+    if game == 1:
+        play_Riddle_it_Roulette()
+    elif game == 2:
+        print("Game 2")
+    elif game == 3:
+        print("Game 3")
+    elif game == 4:
+        print("Game 4")
+    else:
+        print("\033[1;31m" + "Invalid option" + "\033[0m")  # Red text on black background
+
+    play_again = input("Do you want to play another game? (yes/no): ").lower()
+    if play_again != "yes":
+        break
